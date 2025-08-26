@@ -1,0 +1,102 @@
+<!-- app/views/errors/index.html.erb -->
+<div class="min-h-screen bg-gradient-to-br from-red-900 via-red-800 to-black text-white">
+  <div class="container mx-auto px-4 py-8">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <h1 class="text-6xl font-bold text-red-400 mb-4 animate-pulse">
+        Errorい人
+      </h1>
+      <p class="text-xl text-red-300 italic">
+        エラーを出しても生きてるだけで偉い
+      </p>
+    </div>
+
+    <!-- Error Display -->
+    <div class="max-w-4xl mx-auto">
+      <div class="bg-black bg-opacity-50 rounded-lg border border-red-500 shadow-2xl overflow-hidden">
+        <!-- Terminal Header -->
+        <div class="bg-red-800 px-4 py-2 flex items-center">
+          <div class="flex space-x-2">
+            <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+            <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+            <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+          </div>
+          <div class="flex-1 text-center text-red-200">
+            System Error Terminal
+          </div>
+        </div>
+
+        <!-- Error Content -->
+        <div class="p-8">
+          <div class="font-mono text-lg">
+            <div class="text-red-400 mb-4">
+              ERROR: <%= @random_error[:title] %>
+            </div>
+            
+            <!-- Language Toggle Buttons -->
+            <div class="mb-6 flex justify-center space-x-4">
+              <button id="en-btn" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded transition-colors">
+                English
+              </button>
+              <button id="ja-btn" class="bg-gray-600 hover:bg-gray-700 px-4 py-2 rounded transition-colors">
+                日本語
+              </button>
+            </div>
+
+            <!-- Error Messages -->
+            <div id="error-message" class="bg-gray-900 p-4 rounded border border-gray-700">
+              <div id="en-message" class="text-red-300">
+                <%= @random_error[:en] %>
+              </div>
+              <div id="ja-message" class="text-red-300 hidden">
+                <%= @random_error[:ja] %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Draw Button -->
+      <div class="text-center mt-8">
+        <%= form_with url: draw_path, local: true, method: :post do |f| %>
+          <%= f.submit "新しいエラーを引く", 
+              class: "bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-lg text-xl transition-colors cursor-pointer transform hover:scale-105" %>
+        <% end %>
+      </div>
+
+      <!-- Footer -->
+      <div class="text-center mt-12 text-gray-400">
+        <p class="text-sm">
+          あなたは一人じゃない。みんなエラーと共に生きている。
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const enBtn = document.getElementById('en-btn');
+    const jaBtn = document.getElementById('ja-btn');
+    const enMessage = document.getElementById('en-message');
+    const jaMessage = document.getElementById('ja-message');
+
+    enBtn.addEventListener('click', function() {
+      enMessage.classList.remove('hidden');
+      jaMessage.classList.add('hidden');
+      enBtn.classList.remove('bg-gray-600', 'hover:bg-gray-700');
+      enBtn.classList.add('bg-red-600', 'hover:bg-red-700');
+      jaBtn.classList.remove('bg-red-600', 'hover:bg-red-700');
+      jaBtn.classList.add('bg-gray-600', 'hover:bg-gray-700');
+    });
+
+    jaBtn.addEventListener('click', function() {
+      jaMessage.classList.remove('hidden');
+      enMessage.classList.add('hidden');
+      jaBtn.classList.remove('bg-gray-600', 'hover:bg-gray-700');
+      jaBtn.classList.add('bg-red-600', 'hover:bg-red-700');
+      enBtn.classList.remove('bg-red-600', 'hover:bg-red-700');
+      enBtn.classList.add('bg-gray-600', 'hover:bg-gray-700');
+    });
+  });
+</script>

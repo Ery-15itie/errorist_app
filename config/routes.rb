@@ -11,8 +11,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  root "errors#index"
-  post "draw", to: "errors#draw"
+  root "fortune#index"
+  post "draw", to: "fortune#draw"
 
   # config/routes.rb
 Rails.application.routes.draw do

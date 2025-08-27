@@ -13,4 +13,26 @@ Rails.application.routes.draw do
   # root "posts#index"
   root "errors#index"
   post "draw", to: "errors#draw"
+
+  # config/routes.rb
+Rails.application.routes.draw do
+  # 既存のルート設定
+  root 'top#index'
+  
+  # エラー管理のルートを追加
+  resources :errors, only: [:index]
+end
+
+# config/routes.rb
+Rails.application.routes.draw do
+  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+
+  # Defines the root path route ("/")
+  root "errors#index"
+
+  # エラーを引くアクション
+  post "draw", to: "errors#draw"
+
+  # 追加ルート（オプション）
+  get "about", to: "errors#about", as: "about" # 将来的にAboutページを追加する場合
 end

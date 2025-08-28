@@ -1,3 +1,4 @@
+# config/routes.rb
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -13,10 +14,12 @@ Rails.application.routes.draw do
   root "errors#index"
 
   # エラー管理のルート
-  resources :errors, only: [ :index ]
-
-  # エラーを引くアクション
-  post "draw", to: "errors#draw"
+  resources :errors, only: [ :index ] do
+    collection do
+      post :draw              # POST /errors/draw
+      post :toggle_language   # POST /errors/toggle_language
+    end
+  end
 
   # 追加ルート（オプション）
   get "about", to: "errors#about", as: "about"

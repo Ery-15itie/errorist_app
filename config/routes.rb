@@ -10,29 +10,14 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
   # Defines the root path route ("/")
-  # root "posts#index"
-  root "fortune#index"
-  post "draw", to: "fortune#draw"
-
-  # config/routes.rb
-Rails.application.routes.draw do
-  # 既存のルート設定
-  root 'top#index'
-  
-  # エラー管理のルートを追加
-  resources :errors, only: [:index]
-end
-
-# config/routes.rb
-Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
   root "errors#index"
+
+  # エラー管理のルート
+  resources :errors, only: [ :index ]
 
   # エラーを引くアクション
   post "draw", to: "errors#draw"
 
   # 追加ルート（オプション）
-  get "about", to: "errors#about", as: "about" # 将来的にAboutページを追加する場合
+  get "about", to: "errors#about", as: "about"
 end

@@ -36,7 +36,7 @@
       <div class="max-w-md mx-auto space-y-6">
         <!-- エラーを引くボタン -->
         <div class="text-center">
-          <%= form_with url: draw_errors_path, method: :post, local: true, class: "w-full" do |f| %>
+          <%= form_with url: result_errors_path, method: :post, local: true, class: "w-full" do |f| %>
             <%= f.submit "エラーを引く", 
                 class: "w-full bg-cyan-500 hover:bg-cyan-400 text-black font-bold py-4 px-8 rounded-lg transition-all duration-300 text-xl font-mono tracking-wider transform hover:scale-105 shadow-lg shadow-cyan-500/50" %>
           <% end %>
@@ -44,7 +44,7 @@
 
         <!-- 言語切り替えボタン -->
         <div class="text-center">
-          <%= form_with url: toggle_language_errors_path, method: :patch, local: true, class: "w-full" do |f| %>
+          <%= form_with url: toggle_language_errors_path, method: :get, local: true, class: "w-full" do |f| %>
             <%= f.submit "言語切り替え", 
                 class: "w-full bg-transparent border-2 border-cyan-500 hover:bg-cyan-500 hover:text-black text-cyan-400 font-bold py-3 px-6 rounded-lg transition-all duration-300 font-mono tracking-wider" %>
           <% end %>

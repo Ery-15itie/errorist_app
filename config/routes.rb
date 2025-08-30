@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
+  # Can be used by load balancers and uptime monitors to verify that app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Render dynamic PWA files from app/views/pwa/*
@@ -16,8 +16,8 @@ Rails.application.routes.draw do
   # エラー管理のルート
   resources :errors, only: [ :index ] do
     collection do
-      post :draw              # POST /errors/draw
-      post :toggle_language   # POST /errors/toggle_language
+      post :result           # ← draw から result に変更
+      get :toggle_language   # GET /errors/toggle_language
     end
   end
 

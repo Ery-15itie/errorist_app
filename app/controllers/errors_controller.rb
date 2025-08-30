@@ -4,18 +4,16 @@ class ErrorsController < ApplicationController
     @app_subtitle = "エラーを出しても生きてるだけで偉い"
   end
 
-  def draw
+  def result
     @drawn_error = life_errors.sample
     @current_language = "english"
     session[:current_error_id] = @drawn_error[:id]
-    render :result
   end
 
   def toggle_language
-    @current_error_id = session[:current_error_id]
-    @drawn_error = life_errors.find { |error| error[:id] == @current_error_id }
-    @current_language = params[:language] || "english"
-    render :result
+    current_lang = session[:language] || "english"
+    session[:language] = current_lang == "english" ? "japanese" : "english"
+    redirect_to root_path
   end
 
   private

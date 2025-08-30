@@ -8,12 +8,15 @@ class ErrorsController < ApplicationController
     @drawn_error = life_errors.sample
     @current_language = "english"
     session[:current_error_id] = @drawn_error[:id]
+    # 明示的にresult.html.erbをレンダリング
+    render :result
   end
 
   def toggle_language
     current_lang = session[:language] || "english"
     session[:language] = current_lang == "english" ? "japanese" : "english"
-    redirect_to root_path
+    # result画面にリダイレクト
+    redirect_to result_errors_path
   end
 
   private

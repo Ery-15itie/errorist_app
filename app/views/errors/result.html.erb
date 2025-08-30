@@ -37,11 +37,10 @@
       <!-- Action Buttons -->
         <div class="max-w-md mx-auto space-y-4">
           <!-- もう一度引くボタン -->
-          <%= form_with url: result_errors_path, method: :post, local: true, class: "w-full" do |f| %>
+          <%= form_with url: result_errors_path, method: :post, local: true, data: { turbo: false }, class: "w-full" do |f| %>
             <%= f.submit "もう一度引く", 
-                class: "w-full bg-cyan-500 hover:bg-cyan-400 text-black font-bold py-3 px-6 rounded-lg transition-all duration-300 font-mono tracking-wider" %>
+              class: "w-full bg-cyan-500 hover:bg-cyan-400 text-black font-bold py-3 px-6 rounded-lg transition-all duration-300 font-mono tracking-wider" %>
           <% end %>
-
           <!-- 言語切り替えボタン -->
           <%= form_with url: toggle_language_errors_path, method: :get, local: true, class: "w-full" do |f| %>
             <%= f.submit "言語切り替え", 

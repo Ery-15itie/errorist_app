@@ -1,25 +1,36 @@
 <!DOCTYPE html>
+<!-- app/views/layouts/application.html.erb -->
 <html>
   <head>
-    <title><%= content_for(:title) || "App" %></title>
+    <title>Errorい人 ～エラーを出しても生きてるだけで偉い～</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta charset="utf-8">
+    <meta name="description" content="エラーメッセージおみくじアプリ。プログラマー・エンジニアに癒しを提供します。">
+    
+    <!-- ソーシャルメディア用メタタグ -->
+    <meta property="og:title" content="Errorい人 ～エラーを出しても生きてるだけで偉い～">
+    <meta property="og:description" content="エラーメッセージをランダムで出力する癒し系おみくじアプリ。プログラマー・エンジニア必見！">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Errorい人">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Errorい人 ～エラーを出しても生きてるだけで偉い～">
+    <meta name="twitter:description" content="エラーメッセージをランダムで出力する癒し系おみくじアプリ。プログラマー・エンジニア必見！">
+
+    <!-- 追加のメタタグ -->
+    <meta name="keywords" content="エラー, プログラマー, おみくじ, Rails, Ruby, サイバーパンク, エンジニア">
+    <meta name="author" content="あなたの名前">
+    
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= yield :head %>
-
-    <link rel="manifest" href="/manifest.json">
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
-    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+    
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
-    </main>
+  <body class="bg-black">
+    <%= yield %>
   </body>
 </html>

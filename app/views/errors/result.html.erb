@@ -20,30 +20,32 @@
       </div>
     </div>
 
-<!-- Main Content -->
+  <!-- Main Content -->
     <div class="container mx-auto px-8 py-12">
       <div class="text-center mb-12">
         <h1 class="text-4xl font-bold mb-4 text-cyan-400 font-mono tracking-wider">
           <%= @drawn_error[:title] %>
         </h1>
 
-      <!-- Error Message -->
+        <!-- Error Message -->
         <div class="max-w-2xl mx-auto bg-gray-900 border border-cyan-500 rounded-lg p-8 mb-8">
           <p class="text-lg text-cyan-300 font-mono leading-relaxed">
-            <%= session[:language] == 'japanese' ? @drawn_error[:ja] : @drawn_error[:en] %>
+            <%= @current_language == 'japanese' ? @drawn_error[:ja] : @drawn_error[:en] %>
           </p>
         </div>
 
-      <!-- Action Buttons -->
+        <!-- Action Buttons -->
         <div class="max-w-md mx-auto space-y-4">
-          <!-- もう一度引くボタン -->
+          <!-- もう一度引くボタン（重要な修正） -->
           <%= form_with url: result_errors_path, method: :post, local: true, data: { turbo: false }, class: "w-full" do |f| %>
+            <%= f.hidden_field :draw_new, value: "true" %>
             <%= f.submit "もう一度引く", 
               class: "w-full bg-cyan-500 hover:bg-cyan-400 text-black font-bold py-3 px-6 rounded-lg transition-all duration-300 font-mono tracking-wider" %>
           <% end %>
-          <!-- 言語切り替えボタン -->
-          <%= form_with url: toggle_language_errors_path, method: :get, local: true, class: "w-full" do |f| %>
-            <%= f.submit "言語切り替え", 
+
+        <!-- 言語切り替えボタン -->
+          <%= form_with url: toggle_language_errors_path, method: :post, local: true, data: { turbo: false }, class: "w-full" do |f| %>
+            <%= f.submit (@current_language == 'japanese' ? 'Switch to English' : '日本語に切り替え'), 
                 class: "w-full bg-transparent border-2 border-cyan-500 hover:bg-cyan-500 hover:text-black text-cyan-400 font-bold py-3 px-6 rounded-lg transition-all duration-300 font-mono tracking-wider" %>
           <% end %>
 
@@ -52,11 +54,11 @@
               class: "block w-full bg-gray-700 hover:bg-gray-600 text-cyan-400 font-bold py-3 px-6 rounded-lg transition-all duration-300 font-mono tracking-wider text-center" %>
         </div>
 
-      <!-- 現在の言語表示 -->
+        <!-- 現在の言語表示 -->
         <div class="text-center mt-8">
           <div class="inline-block bg-gray-900 border border-cyan-500 rounded-lg px-4 py-2">
             <p class="text-sm text-cyan-300 font-mono">
-              CURRENT LANGUAGE: <span class="text-cyan-400 font-bold"><%= session[:language]&.upcase || 'ENGLISH' %></span>
+              CURRENT LANGUAGE: <span class="text-cyan-400 font-bold"><%= @current_language&.upcase || 'ENGLISH' %></span>
             </p>
           </div>
         </div>

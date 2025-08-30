@@ -16,8 +16,9 @@ Rails.application.routes.draw do
   # エラー管理のルート
   resources :errors, only: [ :index ] do
     collection do
-      post :result           # ← draw から result に変更
-      get :toggle_language   # GET /errors/toggle_language
+      post :result           # POST /errors/result（エラーを引く）
+      get :result            # GET /errors/result（結果画面の表示）← 追加
+      post :toggle_language  # POST /errors/toggle_language（言語切り替え）
     end
   end
 

@@ -1,3 +1,4 @@
+<!-- app/views/errors/index.html.erb -->
 <div class="min-h-screen bg-black text-cyan-400 overflow-hidden relative">
   <!-- Background Grid Pattern -->
   <div class="absolute inset-0 opacity-20">
@@ -36,16 +37,45 @@
         <!-- エラーを引くボタン -->
         <div class="text-center">
           <%= form_with url: result_errors_path, method: :post, local: true, data: { turbo: false } do |f| %>
-            <%= f.submit "エラーを引く", 
-              class: "btn-error w-full bg-transparent border-2 border-cyan-500 text-cyan-400 font-bold py-3 px-6 rounded-lg transition-all duration-300 font-mono tracking-widest cursor-pointer uppercase text-base hover:bg-cyan-500 hover:text-black hover:shadow-lg hover:-translate-y-1" %>
+            <!-- app/views/errors/index.html.erb -->
+
+      <!-- Action Buttons -->
+      <div class="max-w-md mx-auto space-y-6">
+        <!-- エラーを引くボタン -->
+        <div class="text-center">
+          <%= form_with url: result_errors_path, method: :post, local: true, data: { turbo: false } do |f| %>
+            <%= f.submit "エラーを引く" %>
           <% end %>
         </div>
 
         <!-- 言語切り替えボタン -->
         <div class="text-center">
-          <%= form_with url: toggle_language_errors_path, method: :post, local: true do |f| %>
-            <%= f.submit "言語切り替え (LANGUAGE TOGGLE)", 
-              class: "btn-language w-full bg-transparent border-2 border-cyan-500 text-cyan-400 font-bold py-3 px-6 rounded-lg transition-all duration-300 font-mono tracking-widest cursor-pointer uppercase text-base hover:bg-cyan-500 hover:text-black hover:shadow-lg hover:-translate-y-1" %>
+          <%= form_with url: toggle_language_errors_path, method: :get, local: true, class: "w-full" do |f| %>
+            <%= f.submit "言語切り替え", 
+                class: "w-full bg-transparent border-2 border-cyan-500 hover:bg-cyan-500 hover:text-black text-cyan-400 font-bold py-3 px-6 rounded-lg transition-all duration-300 font-mono tracking-wider" %>
+          <% end %>
+        </div>
+
+        <!-- 現在の言語表示 -->
+        <div class="text-center mt-8">
+          <div class="inline-block bg-gray-900 border border-cyan-500 rounded-lg px-4 py-2">
+            <p class="text-sm text-cyan-300 font-mono">
+              CURRENT LANGUAGE: <span class="text-cyan-400 font-bold"><%= session[:language] || 'JAPANESE' %></span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          <% end %>
+        </div>
+
+        <!-- 言語切り替えボタン -->
+        <div class="text-center">
+          <%= form_with url: toggle_language_errors_path, method: :get, local: true, class: "w-full" do |f| %>
+            <%= f.submit "言語切り替え", 
+                class: "w-full bg-transparent border-2 border-cyan-500 hover:bg-cyan-500 hover:text-black text-cyan-400 font-bold py-3 px-6 rounded-lg transition-all duration-300 font-mono tracking-wider" %>
           <% end %>
         </div>
 

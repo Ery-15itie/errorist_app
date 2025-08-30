@@ -2,21 +2,38 @@ class ErrorsController < ApplicationController
   def index
     @app_title = "Errorい人"
     @app_subtitle = "エラーを出しても生きてるだけで偉い"
+    @current_language = session[:language] || "english"
   end
 
   def result
-    @drawn_error = life_errors.sample
-    @current_language = "english"
+    # 新しくエラーを引く場合（もう一度引くボタンから）
+    if params[:draw_new].present?
+      session[:current_error_id] = nil  # 現在のエラーIDをリセット
+    end
+
+    # セッションから現在のエラーIDを取得（言語切り替え時に同じエラーを表示するため）
+    if session[:current_error_id]
+      @drawn_error = life_errors.find { |error| error[:id] == session[:current_error_id] }
+    end
+
+    # エラーが見つからない場合は新しくランダム選択
+    @drawn_error ||= life_errors.sample
+
+    @current_language = session[:language] || "english"
     session[:current_error_id] = @drawn_error[:id]
-    # 明示的にresult.html.erbをレンダリング
     render :result
   end
 
   def toggle_language
     current_lang = session[:language] || "english"
     session[:language] = current_lang == "english" ? "japanese" : "english"
-    # result画面にリダイレクト
-    redirect_to result_errors_path
+
+    # 結果画面からの言語切り替えの場合は結果画面に戻る
+    if request.referer&.include?("result")
+      redirect_to result_errors_path
+    else
+      redirect_to root_path
+    end
   end
 
   private

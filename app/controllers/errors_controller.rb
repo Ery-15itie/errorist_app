@@ -86,7 +86,7 @@ class ErrorsController < ApplicationController
         id: 8,
         title: "Infinite Loop In Bed",
         en: "Alarm triggered, but user repeatedly returns to sleep.",
-        ja: "アラームがトリガーされましたが、ユーザーは繰り返し睡眠に戻ります。"
+        ja: "アラームがトリガーされましたが、ユーザーは今一度睡眠に戻ります。"
       },
       {
         id: 9,
@@ -111,6 +111,24 @@ class ErrorsController < ApplicationController
         title: "Desk Buffer Overflow",
         en: "Your desk is so cluttered with items that there's no space left to work. Try to keep it organized regularly.",
         ja: "机がものでごちゃごちゃしすぎて、作業するスペースが残っていません。定期的に整理整頓を心がけてください。"
+      },
+      {
+        id: 13,
+        title: "RESOURCE_LOCKED_BY_PET",
+        en: "Your pet has occupied the sofa, leaving you with no place to sit. Give them some attention and kindly ask them to move.",
+        ja: "ペットがソファを占領してしまい、座る場所がありません。少し構ってあげて、移動するように優しくお願いしましょう。"
+      },
+      {
+        id: 14,
+        title: "Error: RESOURCE_LOCKED_BY_CAT",
+        en: "Laptop resource locked by feline process. System unavailable until cat relocates. Termination: unfortunate, abort operation.",
+        ja: "猫のプロセスによってノートパソコンのリソースがロックされています。猫が移動するまでシステムは利用できません。残念、諦めましょう。"
+      },
+      {
+        id: 15,
+        title: "Error: Refrigerator Resource Leak",
+        en: "Forgotten items detected. Ingredients expired due to lack of user access.",
+        ja: "忘れられたアイテムが検出されました。ユーザーアクセスがないため、材料の賞味期限が切れています。"
       }
     ]
   end

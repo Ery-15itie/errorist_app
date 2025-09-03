@@ -49,8 +49,8 @@ class ErrorsController < ApplicationController
       {
         id: 2,
         title: "NULL_WEARING_EXCEPTION",
-        en: "An essential item (underwear) was not loaded into the expected memory location (your rear).",
-        ja: "必須アイテム（下着）が期待されるメモリ位置（あなたのお尻）にロードされていません。"
+        en: "An essential item (underwear) was not loaded into the expected memory location (your rear).Warning: Forgotten Items Detected in Changing Room",
+        ja: "必須アイテム（下着）が期待されるメモリ位置（あなたのお尻）にロードされていません。脱衣所の忘れ物にはご注意を。"
       },
       {
         id: 3,
@@ -129,7 +129,28 @@ class ErrorsController < ApplicationController
         title: "Error: Refrigerator Resource Leak",
         en: "Forgotten items detected. Ingredients expired due to lack of user access.",
         ja: "忘れられたアイテムが検出されました。ユーザーアクセスがないため、材料の賞味期限が切れています。"
+      },
+      {
+        id: 16,
+        title: "SYNTAX_ERROR_IN_A_JOKE",
+        en: "Attempted to deliver a funny story, but audience response was null. Reminder: your natural self, without forcing jokes, is the best",
+        ja: "面白い話をしようとしたが、観客の反応はゼロです。注意：無理に冗談を言わず、ありのままの自分でいるのが一番です！"
+      },
+      {
+        id: 17,
+        title: "UNKNOWN_DEVICE_ATTACHED_TO_BAG",
+        en: "Child’s toy detected in business bag. System note: thank you for your hard work in parenting.",
+        ja: "子供のおもちゃがビジネスバッグの中に検出されました。システムメモ：子育てお疲れ様です！！"
+      },
+      {
+        id: 18,
+        title: "UNREACHABLE_BUS_ERROR",
+        en: "Process failed — bus left before boarding. Recommendation: initiate departure from home earlier next time.",
+        ja: "乗車前にバスが出発しました。推奨事項: 次回は早めに自宅から出発してください。"
       }
+
+
+
     ]
   end
 end

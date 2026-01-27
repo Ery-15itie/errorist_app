@@ -1,8 +1,9 @@
+# config/routes.rb
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
+  # Can be used by load balancers and uptime monitors to verify that app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Render dynamic PWA files from app/views/pwa/*
@@ -10,29 +11,16 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
   # Defines the root path route ("/")
-  # root "posts#index"
-  root "fortune#index"
-  post "draw", to: "fortune#draw"
-
-  # config/routes.rb
-Rails.application.routes.draw do
-  # 既存のルート設定
-  root 'top#index'
-  
-  # エラー管理のルートを追加
-  resources :errors, only: [:index]
-end
-
-# config/routes.rb
-Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
   root "errors#index"
 
-  # エラーを引くアクション
-  post "draw", to: "errors#draw"
+  # エラー管理のルート
+  resources :errors, only: [ :index ] do
+    collection do
+      post :result           # ← draw から result に変更
+      get :toggle_language   # GET /errors/toggle_language
+    end
+  end
 
   # 追加ルート（オプション）
-  get "about", to: "errors#about", as: "about" # 将来的にAboutページを追加する場合
+  get "about", to: "errors#about", as: "about"
 end
